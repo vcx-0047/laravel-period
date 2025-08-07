@@ -33,7 +33,7 @@ trait Period
 
         if (!$start || !$end || $end <= $start) {
             throw ValidationException::withMessages([
-                'end' => 'End date must be after start date.',
+                'period_end' => 'Period_end date must be after start date.',
             ]);
         }
     }
@@ -51,8 +51,8 @@ trait Period
                     ->orWhereBetween('end', [$start, $end])
                     ->orWhere(function ($q2) use ($start, $end) {
                         $q2
-                            ->where('start', '<=', $start)
-                            ->where('end', '>=', $end);
+                            ->where('period_start', '<=', $start)
+                            ->where('period_end', '>=', $end);
                     });
             });
 
@@ -62,8 +62,8 @@ trait Period
 
         if ($query->exists()) {
             throw ValidationException::withMessages([
-                'start' => 'Period overlaps with an existing one.',
-                'end' => 'Period overlaps with an existing one.',
+                'start' => 'Period_start overlaps with an existing one.',
+                'end' => 'Period_end overlaps with an existing one.',
             ]);
         }
     }
@@ -77,12 +77,12 @@ trait Period
 
     public function getPeriodColumnStart(): string
     {
-        return 'start';
+        return 'period_start';
     }
 
     public function getPeriodColumnEnd(): string
     {
-        return 'end';
+        return 'period_end';
     }
 
     /**
