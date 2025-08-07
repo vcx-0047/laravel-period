@@ -84,10 +84,7 @@ trait Period
     {
         return 'period_end';
     }
-
-    /**
-     * Models using this trait can override this method
-     */
+ 
     public function shouldCheckPeriodConflict(): bool
     {
         return true;
