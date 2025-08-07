@@ -47,8 +47,8 @@ trait Period
             ->newQuery()
             ->where(function ($q) use ($start, $end) {
                 $q
-                    ->whereBetween('start', [$start, $end])
-                    ->orWhereBetween('end', [$start, $end])
+                    ->whereBetween('period_start', [$start, $end])
+                    ->orWhereBetween('period_end', [$start, $end])
                     ->orWhere(function ($q2) use ($start, $end) {
                         $q2
                             ->where('period_start', '<=', $start)
