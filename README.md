@@ -30,22 +30,12 @@ to tun it of use this in the model
 
 if want to add the migrate 
 
-add to /home/walid/Projects/laravel/zkteco/vendor/laravel/framework/src/Illuminate/Database/Schema/Blueprint.php
-this line 
-public function period()
-    {
-        return new Collection([
-            $this->timestamp('period_start')->nullable(),
-            $this->timestamp('period_end')->nullable(),
-        ]);
-    }
-how to use it 
+add migrate.blueprint.php to /home/walid/Projects/laravel/zkteco/vendor/laravel/framework/src/Illuminate/Database/Schema/Blueprint.php
+ 
 
 public function up(): void
     {
-        Schema::create('example', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('example', function (Blueprint $table) { 
             $table->period();  // this add 2 colomuns period_start and period_end
         });
     }
